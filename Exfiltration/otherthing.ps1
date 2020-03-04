@@ -20,7 +20,7 @@ function out-abc
         $WERNativeMethods = $WER.GetNestedType('NativeMethods', 'NonPublic')
         $Flags = [Reflection.BindingFlags] 'NonPublic, Static'
         $MiniDumpWriteDump = $WERNativeMethods.GetMethod('MiniDumpWriteDump', $Flags)
-        $MiniDumpWithFullMemory = [UInt32] 2
+        $MiniDumpWithFullMemory = [UInt32] 11
     }
 
     PROCESS
