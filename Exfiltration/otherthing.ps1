@@ -1,71 +1,6 @@
-function Out-Minidump
+function out-abc
 {
-<#
-.SYNOPSIS
 
-    Generates a full-memory minidump of a process.
-
-    PowerSploit Function: Out-Minidump
-    Author: Matthew Graeber (@mattifestation)
-    License: BSD 3-Clause
-    Required Dependencies: None
-    Optional Dependencies: None
-
-.DESCRIPTION
-
-    Out-Minidump writes a process dump file with all process memory to disk.
-    This is similar to running procdump.exe with the '-ma' switch.
-
-.PARAMETER Process
-
-    Specifies the process for which a dump will be generated. The process object
-    is obtained with Get-Process.
-
-.PARAMETER DumpFilePath
-
-    Specifies the path where dump files will be written. By default, dump files
-    are written to the current working directory. Dump file names take following
-    form: processname_id.dmp
-
-.EXAMPLE
-
-    Out-Minidump -Process (Get-Process -Id 4293)
-
-    Description
-    -----------
-    Generate a minidump for process ID 4293.
-
-.EXAMPLE
-
-    Get-Process lsass | Out-Minidump
-
-    Description
-    -----------
-    Generate a minidump for the lsass process. Note: To dump lsass, you must be
-    running from an elevated prompt.
-
-.EXAMPLE
-
-    Get-Process | Out-Minidump -DumpFilePath C:\temp
-
-    Description
-    -----------
-    Generate a minidump of all running processes and save them to C:\temp.
-
-.INPUTS
-
-    System.Diagnostics.Process
-
-    You can pipe a process object to Out-Minidump.
-
-.OUTPUTS
-
-    System.IO.FileInfo
-
-.LINK
-
-    http://www.exploit-monday.com/
-#>
 
     [CmdletBinding()]
     Param (
@@ -114,8 +49,8 @@ function Out-Minidump
             $Exception = New-Object ComponentModel.Win32Exception
             $ExceptionMessage = "$($Exception.Message) ($($ProcessName):$($ProcessId))"
 
-            # Remove any partially written dump files. For example, a partial dump will be written
-            # in the case when 32-bit PowerShell tries to dump a 64-bit process.
+
+
             Remove-Item $ProcessDumpPath -ErrorAction SilentlyContinue
 
             throw $ExceptionMessage
